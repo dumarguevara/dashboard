@@ -58,7 +58,7 @@ let updateData = () => {
 
 let indicadores = () => {
     
-    let cambios = [
+    let data2 = [
         {
           valor_previo: 250,
           valor_actual: 301,
@@ -81,30 +81,29 @@ let indicadores = () => {
         }
       ];
     
-
       for (let i=0; i<4; i++){
-        let calculo = (cambios[i].valor_actual - cambios[i].valor_previo)*100/cambios[i].valor_previo 
-        cambios[i].porcentaje = calculo
+        let calculo = ((data2[i].valor_actual - data2[i].valor_previo)*100/data2[i].valor_previo ).toFixed(2);
+        data2[i].porcentaje = calculo;
+        
+
         if(calculo>0)
-        cambios[i].clase = "text-success"
-      else
-      cambios[i].clase = "text-danger"
+        data2[i].clase = "text-success"
+        else
+        data2[i].clase = "text-danger"
+      }            
+      console.log(data2)
 
-      }
-            
-      console.log(cambios)
-
-      let [money, users, clients, sales] = cambios;
+      let [money, users, clients, sales] = data2;
       
       let {porcentaje: porcentaje_money, clase: cambio_money , mensaje_tiempo: mensaje_money } = money;
       let {porcentaje: porcentaje_users, clase: cambio_users, mensaje_tiempo: mensaje_users } = users;
       let {porcentaje: porcentaje_clients, clase: cambio_clients, mensaje_tiempo: mensaje_clients } = clients;
       let {porcentaje: porcentaje_sales, clase: cambio_sales, mensaje_tiempo: mensaje_sales } = sales;        
       
-      let message_money = '<p class="mb-0"><span class="text-sm ${cambio_money} font-weight-bolder">${porcentaje_money}</span>${mensaje_money}</p>';  
-      let message_users = '<p class="mb-0"><span class="text-sm ${cambio_users} font-weight-bolder"> ${porcentaje_users} </span> ${mensaje_users} </p>';
-      let message_clients = '<p class="mb-0"><span class="text-sm ${cambio_clients} font-weight-bolder"> ${porcentaje_clients} </span> ${mensaje_clients} </p>';
-      let message_sales = '<p class="mb-0"><span class="text-sm ${cambio_sales} font-weight-bolder"> ${porcentaje_sales} </span> ${mensaje_sales} </p>';
+      let message_money = `<p class="mb-0"><span class="text-sm ${cambio_money} font-weight-bolder">${porcentaje_money}% </span>${mensaje_money}</p>`;  
+      let message_users = `<p class="mb-0"><span class="text-sm ${cambio_users} font-weight-bolder"> ${porcentaje_users}% </span> ${mensaje_users} </p>`;
+      let message_clients = `<p class="mb-0"><span class="text-sm ${cambio_clients} font-weight-bolder"> ${porcentaje_clients}% </span> ${mensaje_clients} </p>`;
+      let message_sales = `<p class="mb-0"><span class="text-sm ${cambio_sales} font-weight-bolder"> ${porcentaje_sales}% </span> ${mensaje_sales} </p>`;
          
    let listOfElements = document.getElementsByClassName('card-footer p-3') 
    
